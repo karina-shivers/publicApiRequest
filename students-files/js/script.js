@@ -1,4 +1,5 @@
 
+// load the results from the API and display them
 document.addEventListener('DOMContentLoaded', function() {
     fetch("https://randomuser.me/api/?results=12&nat=US")
         .then(function(response){
@@ -11,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 })
 
+// renders the search box
 function renderSearchBox(users) {
     let searchContainer = document.querySelector('.search-container')
     searchContainer.insertAdjacentHTML('beforeend',
@@ -38,7 +40,7 @@ function renderSearchBox(users) {
     })
 }
 
-
+// renders the user cards
 function renderGallery(users) {
     let gallery = document.querySelector('#gallery')
     //delete existing children so we always render the gallery from scratch
@@ -62,16 +64,16 @@ function renderGallery(users) {
                 </div>
             </div>`
         )
-        
+        //the card is the last item inserted to gallery so grab that
         let card = gallery.lastChild
-       
+        //this is to show a modal when you click on it
         card.addEventListener('click', function() {
             showModal(i, users)
         })
     }
 }
 
-
+//for the modal
 function showModal(i, users) {
     console.log(i, users[i])
     hideModal()
@@ -103,7 +105,7 @@ function showModal(i, users) {
                     </p>
                 </div>
             </div>
-           
+            // IMPORTANT: Below is only for exceeds tasks 
             <div class="modal-btn-container">
                 <button type="button" id="modal-prev" class="modal-prev btn">Prev</button>
                 <button type="button" id="modal-next" class="modal-next btn">Next</button>
